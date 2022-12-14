@@ -3,9 +3,6 @@ import "./Agents.css"
 import * as agentImgs from './img/agents'
 
 class Agents extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     renderAgent(agentName, selected) {
         return (
@@ -15,12 +12,12 @@ class Agents extends Component {
                         selectedAgent: selected ? null : agentName,
                         selectedMap: 'any',
                         selectedAbility: null,
-                        selectedSide: null,
+                        selectedSide: 'all',
                     })
                 }} 
                 className={`Agent ${selected ? 'Agent-active' : ''}`} 
                 key={'ra-' + agentName}>
-                <img src={agentImgs[agentName]} style={{width: '70px', height:'auto'}}/>
+                <img src={agentImgs[agentName]} alt={agentImgs[agentName]} style={{width: '70px', height:'auto'}}/>
             </div> 
         )
     }

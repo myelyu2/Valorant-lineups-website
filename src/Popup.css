@@ -11,15 +11,30 @@
     position: fixed;
     width: 90%;
     height: 90%;
-    background-color: aquamarine;
+    background-color: #1F2933;
     top: 5%;
     left: 5%;
+    border-radius: 10px;
     cursor: default;
 }
 
 .popupClose {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
+    width: 40px;
 }
+
+.videoFrame {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    bottom: 10px;
+    z-index: -1;
+}
+
+.videoTitle {
+    padding-left: 30px;
+}
+

@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import './Maps.css';
 
 class Maps extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     renderMap(mapName) {
         const { allData, selectedSource, selectedAgent, selectedMap } = this.props.globalState
 
         const mapNameUpper = mapName[0].toUpperCase() + mapName.slice(1)
-        const mapForAgentExists = mapName === 'any' || selectedAgent && Object.keys(allData[selectedSource][selectedAgent]).includes(mapName)
+        const mapForAgentExists = (mapName === 'any') || (selectedAgent && Object.keys(allData[selectedSource][selectedAgent]).includes(mapName))
 
         return (
             <div className={`Map ${selectedMap === mapName ? 'Map-active' : ''}`} key={'sm-' + mapName} onClick={() => {

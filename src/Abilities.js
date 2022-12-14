@@ -4,15 +4,13 @@ import * as abilitiesImgs from './img/abilities'
 
 
 class Abilities extends Component{
-    constructor(props) {
-        super(props)
-    }
+
     renderAbilities(selectedAgent) {
         if (selectedAgent) {
             return(
                 <div>
                     {Object.keys(abilitiesImgs[selectedAgent]).map(abilityName => (
-                        <img src={abilitiesImgs[selectedAgent][abilityName]} 
+                        <img src={abilitiesImgs[selectedAgent][abilityName]} key={abilityName} alt={abilityName}
                             style={{width: '50px', height:'auto'}} 
                             className={`Ability ${abilityName === this.props.globalState.selectedAbility ? 'Ability-active' : ''}`} 
                             onClick={() => {
@@ -27,15 +25,16 @@ class Abilities extends Component{
         }
     }
 
-
     render() {
         const { selectedAgent } = this.props.globalState
         return(
             <div >
                 {this.renderAbilities(selectedAgent)}
+   
             </div>
         )
     }
+    
 }
 
 export default Abilities

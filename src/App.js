@@ -13,17 +13,41 @@ class App extends Component {
       allData: {},
       allMapNames: [],
       abilities: {},
-
-      popupData: {},
-
+      favorites: JSON.parse(localStorage.getItem('favorites') || '{}'),
+      popupData: null,
       selectedMap: 'any',
       selectedAgent: null,
       selectedAbility: null,
-      selectedSide: null,
-      selectedFavorite: false,
+      selectedSide: 'all',
+      selectedFavorite: 'all',
     }
 
     this.mounted = false
+  }
+
+  addFavorite(videoID) {
+    const favorites = this.state.favorites
+    favorites[videoID] = true
+
+    this.setState({
+      ...this.state,
+      favorites,
+    })
+
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+  }
+
+  removeFavorite(videoID) {
+    const favorites = this.state.favorites
+    delete favorites[videoID]
+
+    this.setState({
+      ...this.state,
+      favorites,
+    })
+
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+    // localStorage.removeItem('this.state.favorites[videoID]')
   }
 
   componentDidMount() {
@@ -78,8 +102,12 @@ class App extends Component {
           globalState={this.state} 
           setGlobalState={this.setGlobalState.bind(this)}
           openPopup={this.openPopup.bind(this)}
+          addFavorite={this.addFavorite.bind(this)}
+          removeFavorite={this.removeFavorite.bind(this)}
         />
         <Popup 
+          globalState={this.state} 
+          selectedAgent={this.state.selectedAgent}
           popupData={this.state.popupData} 
           closePopup={this.closePopup.bind(this)}
         />
