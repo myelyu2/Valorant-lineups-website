@@ -55,9 +55,9 @@ class App extends Component {
       this.mounted = true
 
       Promise.all([
-        axios("http://localhost:3002/lineups"),
-        axios("http://localhost:3002/mapNames"),
-        axios("http://localhost:3002/abilities"),
+        axios("https://stormy-island-65248.herokuapp.com/lineups"),
+        axios("https://stormy-island-65248.herokuapp.com/mapNames"),
+        axios("https://stormy-island-65248.herokuapp.com/abilities"),
       ])
       .then(([lineupsRes, mapNamesRes, abilitiesRes]) => {
         this.setState({
