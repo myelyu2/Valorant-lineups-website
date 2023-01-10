@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Valorant-lineups-website/static/css/main.147239da.css",
-    "main.js": "/Valorant-lineups-website/static/js/main.f8ba3d65.js",
+    "main.js": "/Valorant-lineups-website/static/js/main.8a224600.js",
     "static/media/Raze.webp": "/Valorant-lineups-website/static/media/Raze.d3a5fdb43270f260ec2b.webp",
     "static/media/Slow_Orb.webp": "/Valorant-lineups-website/static/media/Slow_Orb.debbc8d97bf6e15a503d.webp",
     "static/media/Recon_Bolt.webp": "/Valorant-lineups-website/static/media/Recon_Bolt.29ac50f0a4d2c916cf26.webp",
@@ -81,10 +81,10 @@
     "index.html": "/Valorant-lineups-website/index.html",
     "static/media/Guiding_Light.webp": "/Valorant-lineups-website/static/media/Guiding_Light.0387d3411e7c3590d0b0.webp",
     "main.147239da.css.map": "/Valorant-lineups-website/static/css/main.147239da.css.map",
-    "main.f8ba3d65.js.map": "/Valorant-lineups-website/static/js/main.f8ba3d65.js.map"
+    "main.8a224600.js.map": "/Valorant-lineups-website/static/js/main.8a224600.js.map"
   },
   "entrypoints": [
     "static/css/main.147239da.css",
-    "static/js/main.f8ba3d65.js"
+    "static/js/main.8a224600.js"
   ]
 }
