@@ -16,9 +16,30 @@ The website is not resposnsive, use only on desktop and is built using HTML, CSS
 <br/>
 
 ## Getting Started
-To run the website:<br/>
-Use this link https://myelyu2.github.io/Valorant-lineups-website/ <br/>
-You can save your favorite lineups by clicking on the save icon on the right bottom corner of the preview.<br/>
+To run the website locally:
+
+1. Clone or download the repository
+```
+git clone https://github.com/myelyu2/Valorant-lineups-website.git
+```
+
+2. Navigate to the root directory of the repository
+```
+cd Valorant-lineups-website
+```
+
+3. Install all required dependencies
+```
+npm i
+```
+
+4. Run a local development server
+```
+npm start
+```
+
+5. Open the website in your browser at the URL [http://localhost:3000](http://localhost:3000)
+
 <br/>
 
 ## Built With
