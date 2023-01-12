@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./Results.css"
-import { bookmark, bookmark_filled } from './img'
-import * as abilityIcons from './img/abilities'
+import "../../styles/components/Results.css"
+import { bookmark, bookmark_filled } from '../../assets/img'
+import * as abilityIcons from '../../assets/img/abilities'
 
 class Results extends Component {
 
@@ -33,7 +33,17 @@ class Results extends Component {
     }
 
     render() {
-        const { allData, selectedSource, selectedAgent, selectedMap, selectedAbility, selectedSide, selectedFavorite, favorites } = this.props.globalState
+        const {
+            allData,
+            selectedSource,
+            selectedAgent,
+            selectedMap,
+            selectedAbility,
+            selectedSide,
+            selectedFavorite,
+            favorites,
+          } = this.props.globalState;
+
         let dataToRender = []
 
         if (selectedMap === 'any' && selectedAgent) {
@@ -57,23 +67,14 @@ class Results extends Component {
                 })
             }
         }
+
         
-        if (selectedAbility) {
-            dataToRender = dataToRender.filter(d => d.ability === selectedAbility)
-        }
-
-        if (selectedSide !== 'all') {
-            dataToRender = dataToRender.filter(d => d.side === selectedSide)           
-        } 
-
-        if (selectedFavorite !== 'all') {
-            dataToRender = dataToRender.filter(d => d.videoUrl in favorites)
-        }
-
-        dataToRender = dataToRender.sort((a, b) => b.score - a.score)
-
-        const numResults = dataToRender.length
-
+        dataToRender = dataToRender
+        .filter(d => !selectedAbility || d.ability === selectedAbility)
+        .filter(d => selectedSide === 'all' || d.side === selectedSide)
+        .filter(d => selectedFavorite === 'all' || d.videoUrl in favorites)
+        .sort((a, b) => b.score - a);
+        
         if (dataToRender.length % 3 !== 0) {
             for (let i = 0; i < dataToRender.length % 3; i++) {
                 dataToRender.push({ hide: true, key:`hide-${i}` })
@@ -82,7 +83,7 @@ class Results extends Component {
         
         return(
             <>
-                <h3>Found {numResults} results</h3>
+                <h3>Found {dataToRender.length} results</h3>
                 <div className="Results-Block">
                     {dataToRender.map(data => this.renderVideoBlock(data))}
                 </div>

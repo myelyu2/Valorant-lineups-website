@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import Filter from './Filter';
-import Popup from "./Popup";
-import Results from './Results';
+import Filter from './sections/Filter';
+import Popup from "./sections/Popup";
+import Results from './sections/Results';
 
 class App extends Component {
   constructor() {

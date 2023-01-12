@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Favorites.css'
+import '../../styles/components/Favorites.css'
 
 class Favorites extends Component {
     renderFavorites() {

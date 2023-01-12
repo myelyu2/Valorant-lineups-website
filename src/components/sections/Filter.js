@@ -1,4 +1,4 @@
-import './Filter.css';
+import '../../styles/components/Filter.css';
 import Maps from './Maps'
 import Agents from './Agents'
 import Sides from './Sides'

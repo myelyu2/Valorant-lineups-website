@@ -1,32 +1,35 @@
 import React, { Component } from "react";
-import { cancel } from './img'
-import './Popup.css';
+import { cancel } from '../../assets/img'
+import '../../styles/components/Popup.css';
 // import * as abilitiesImgs from './img/abilities'
 
 class Popup extends Component {
-
-    async post(key, value, videoId) {
-        const myHeaders = new Headers()
-        myHeaders.append("Content-Type", "application/json")
-
-        const saveRes_raw = await fetch("http://localhost:3002/setAdditionalData", {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify({
-                source: this.props.globalState.selectedSource, 
-                agent: this.props.globalState.selectedAgent, 
-                map: this.props.globalState.selectedMap, 
-                videoUrl: videoId, 
-                key,
-                value,
-            }),
-            redirect: 'follow'
-        })
-        const saveRes = await saveRes_raw.json()
-        console.log(saveRes)
-    }
-
-
+    // async post(key, value, videoId) {
+    //     try {
+    //         const myHeaders = new Headers();
+    //         myHeaders.append("Content-Type", "application/json");
+    
+    //         const saveRes_raw = await fetch("http://localhost:3002/setAdditionalData", {
+    //             method: "POST",
+    //             headers: myHeaders,
+    //             body: JSON.stringify({
+    //                 source: this.props.globalState.selectedSource,
+    //                 agent: this.props.globalState.selectedAgent,
+    //                 map: this.props.globalState.selectedMap,
+    //                 videoUrl: videoId,
+    //                 key,
+    //                 value,
+    //             }),
+    //             redirect: "follow",
+    //         });
+    //         const saveRes = await saveRes_raw.json();
+    //         console.log(saveRes);
+    //     } 
+    //     catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+    
 
     renderVideo(videoId, videoTitle) {
         return (
@@ -41,7 +44,7 @@ class Popup extends Component {
                     allowFullScreen
                 ></iframe>
 
-                {/* RAZMETKA */}
+                {/* RAZMETKA to add video to db */}
                 {/* <div>
                     <p style={{ backgroundColor: 'black' }}>Ability:</p>
                     {Object.keys(abilitiesImgs[this.props.selectedAgent]).map(abilityName => {
@@ -66,22 +69,23 @@ class Popup extends Component {
     }
 
     render() {
-        if (this.props.popupData !== null) {
-            return (
-                <div onClick={() => { this.props.closePopup()}} id="popupWrapper">
-                    <div id="popup">
-                        <img 
-                            className='popupClose'
-                            src={cancel} 
-                            onClick={() => { this.props.closePopup()}}
-                            alt='close'
-                        />
-                        {this.renderVideo(this.props.popupData.videoUrl, this.props.popupData.title)}
-                    </div>
-                </div>
-            )
-        }
-    }
+        const { popupData, closePopup } = this.props;
+        return (
+          popupData === null ? null : (
+            <div onClick={closePopup} id="popupWrapper">
+              <div id="popup">
+                <img
+                  className="popupClose"
+                  src={cancel}
+                  onClick={closePopup}
+                  alt="close"
+                />
+                {this.renderVideo(popupData.videoUrl, popupData.title)}
+              </div>
+            </div>
+          )
+        );
+      }
 }
 
 export default Popup

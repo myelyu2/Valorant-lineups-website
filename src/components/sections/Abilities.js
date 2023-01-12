@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import './Abilities.css'
-import * as abilitiesImgs from './img/abilities'
+import '../../styles/components/Abilities.css'
+import * as abilitiesImgs from '../../assets/img/abilities'
 
 
 class Abilities extends Component{

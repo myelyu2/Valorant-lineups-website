@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import './Maps.css';
+import '../../styles/components/Maps.css';
 
 class Maps extends Component {
 
+    mapExistForAgent(allData, selectedSource, selectedAgent, mapName) {
+        return (mapName === 'any') || (selectedAgent && Object.keys(allData[selectedSource][selectedAgent]).includes(mapName))
+     }
+
     renderMap(mapName) {
         const { allData, selectedSource, selectedAgent, selectedMap } = this.props.globalState
-
         const mapNameUpper = mapName[0].toUpperCase() + mapName.slice(1)
-        const mapForAgentExists = (mapName === 'any') || (selectedAgent && Object.keys(allData[selectedSource][selectedAgent]).includes(mapName))
+        const mapForAgentExists = this.mapExistForAgent(allData, selectedSource, selectedAgent, mapName)
 
         return (
             <div className={`Map ${selectedMap === mapName ? 'Map-active' : ''}`} key={'sm-' + mapName} onClick={() => {

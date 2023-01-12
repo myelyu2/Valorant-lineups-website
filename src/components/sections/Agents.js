@@ -1,23 +1,25 @@
 import React, { Component } from "react"
-import "./Agents.css"
-import * as agentImgs from './img/agents'
+import "../../styles/components/Agents.css"
+import * as agentImgs from '../../assets/img/agents'
 
 class Agents extends Component {
+
+    onAgentClick(selectedAgent) {
+        this.props.setGlobalState({
+            selectedAgent,
+            selectedMap: 'any',
+            selectedAbility: null,
+            selectedSide: 'all',
+        });
+    }
 
     renderAgent(agentName, selected) {
         return (
             <div 
-                onClick={() => {
-                    this.props.setGlobalState({
-                        selectedAgent: selected ? null : agentName,
-                        selectedMap: 'any',
-                        selectedAbility: null,
-                        selectedSide: 'all',
-                    })
-                }} 
+                onClick={() => { this.onAgentClick(selected ? null : agentName)}} 
                 className={`Agent ${selected ? 'Agent-active' : ''}`} 
-                key={'ra-' + agentName}>
-                <img src={agentImgs[agentName]} alt={agentImgs[agentName]} style={{width: '70px', height:'auto'}}/>
+                key={agentName}>
+                <img src={agentImgs[agentName]} alt={agentName} style={{width: '70px', height:'auto'}}/>
             </div> 
         )
     }
