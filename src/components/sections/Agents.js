@@ -1,11 +1,12 @@
-import React, { Component } from "react"
-import "../../styles/components/Agents.css"
-import * as agentImgs from '../../assets/img/agents'
+import React from "react";
+import "../../styles/components/Agents.css";
+import * as agentImgs from '../../assets/img/agents';
 
-class Agents extends Component {
+const Agents = ({ globalState, setGlobalState }) => {
 
-    onAgentClick(selectedAgent) {
-        this.props.setGlobalState({
+    const onAgentClick = (selectedAgent) => {
+        setGlobalState({
+            ...globalState,
             selectedAgent,
             selectedMap: 'any',
             selectedAbility: null,
@@ -13,25 +14,24 @@ class Agents extends Component {
         });
     }
 
-    renderAgent(agentName, selected) {
+    const renderAgent = (agentName, selected) => {
         return (
             <div 
-                onClick={() => { this.onAgentClick(selected ? null : agentName)}} 
+                onClick={() => { onAgentClick(selected ? null : agentName)}} 
                 className={`Agent ${selected ? 'Agent-active' : ''}`} 
                 key={agentName}>
-                <img src={agentImgs[agentName]} alt={agentName} style={{width: '70px', height:'auto'}}/>
+                <img src={agentImgs[agentName]} alt={agentName} />
             </div> 
-        )
+        );
     }
 
-    render() {
-        const { allData, selectedSource, selectedAgent } = this.props.globalState
-        return(
-            <div>
-                {Object.keys(allData[selectedSource] || {}).map(agentName => this.renderAgent(agentName, agentName === selectedAgent))}
-            </div>
-        )
-    }
+    const { allData, selectedSource, selectedAgent } = globalState;
+
+    return (
+        <div>
+            {Object.keys(allData[selectedSource] || {}).map(agentName => renderAgent(agentName, agentName === selectedAgent))}
+        </div>
+    );
 }
 
-export default Agents
+export default Agents;

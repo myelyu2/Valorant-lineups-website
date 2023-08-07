@@ -5,6 +5,10 @@
     margin-bottom: 21px;
 }
 
+.Agent > img {
+    height: 70px;
+}
+
 .Agent:hover{
     border-radius: 6px;
     outline: 4px solid #313B45;

@@ -3,7 +3,9 @@
     position: relative;
     margin-right: 15px;
     margin-bottom: 21px;
+    height: 50px;
 }
+
 
 .Ability:hover{
     border-radius: 6px;

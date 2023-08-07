@@ -1,119 +1,80 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import React, { Component } from "react";
 import Filter from './sections/Filter';
 import Popup from "./sections/Popup";
 import Results from './sections/Results';
 
-class App extends Component {
-  constructor() {
-    super()
+const App = () => {
+  const [globalState, setGlobalState] = useState({
+    selectedSource: 'trackerGG',
+    allData: {},
+    allMapNames: [],
+    abilities: {},
+    favorites: JSON.parse(localStorage.getItem('favorites') || '{}'),
+    popupData: null,
+    selectedMap: 'any',
+    selectedAgent: null,
+    selectedAbility: null,
+    selectedSide: 'all',
+    selectedFavorite: 'all',
+  });
 
-    this.state = {
-      selectedSource: 'trackerGG',
-      allData: {},
-      allMapNames: [],
-      abilities: {},
-      favorites: JSON.parse(localStorage.getItem('favorites') || '{}'),
-      popupData: null,
-      selectedMap: 'any',
-      selectedAgent: null,
-      selectedAbility: null,
-      selectedSide: 'all',
-      selectedFavorite: 'all',
-    }
-
-    this.mounted = false
-  }
-
-  addFavorite(videoID) {
-    const favorites = this.state.favorites
-    favorites[videoID] = true
-
-    this.setState({
-      ...this.state,
-      favorites,
-    })
-
-    localStorage.setItem('favorites', JSON.stringify(favorites))
-  }
-
-  removeFavorite(videoID) {
-    const favorites = this.state.favorites
-    delete favorites[videoID]
-
-    this.setState({
-      ...this.state,
-      favorites,
-    })
-
-    localStorage.setItem('favorites', JSON.stringify(favorites))
-    // localStorage.removeItem('this.state.favorites[videoID]')
-  }
-
-  componentDidMount() {
-    if (!this.mounted) {
-      this.mounted = true
-
-      Promise.all([
+  useEffect(() => {
+    const fetchData = async () => {
+      const [lineupsRes, mapNamesRes, abilitiesRes] = await Promise.all([
         axios("https://valo-lineup-server.onrender.com/lineups"),
         axios("https://valo-lineup-server.onrender.com/mapNames"),
         axios("https://valo-lineup-server.onrender.com/abilities"),
-      ])
-      .then(([lineupsRes, mapNamesRes, abilitiesRes]) => {
-        this.setState({
-          ...this.state,
-          allData: lineupsRes.data,
-          allMapNames: mapNamesRes.data,
-          abilities: abilitiesRes.data,
-        })
-      })
-    }
-  }
+      ]);
+      setGlobalState(prevState => ({
+        ...prevState,
+        allData: lineupsRes.data,
+        allMapNames: mapNamesRes.data,
+        abilities: abilitiesRes.data,
+      }));
+    };
 
-  setGlobalState(newState) {
-    this.setState({
-      ...this.state,
-      ...newState
-    })
-  }
+    fetchData();
+  }, []);
 
-  openPopup(data) {
-    this.setState({
-      ...this.state,
-      popupData: data,
-    })
-  }
+  const addFavorite = (videoID) => {
+    const favorites = { ...globalState.favorites, [videoID]: true };
+    setGlobalState(prevState => ({ ...prevState, favorites }));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  };
 
-  closePopup() {
-    this.setState({
-      ...this.state,
-      popupData: null,
-    })
-  }
+  const removeFavorite = (videoID) => {
+    const favorites = { ...globalState.favorites };
+    delete favorites[videoID];
+    setGlobalState(prevState => ({ ...prevState, favorites }));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  };
 
-  render() {
-    return (
-      <>
-        <Filter 
-        globalState={this.state} 
-        setGlobalState={this.setGlobalState.bind(this)}
-        />
-        <Results 
-          globalState={this.state} 
-          setGlobalState={this.setGlobalState.bind(this)}
-          openPopup={this.openPopup.bind(this)}
-          addFavorite={this.addFavorite.bind(this)}
-          removeFavorite={this.removeFavorite.bind(this)}
-        />
-        <Popup 
-          globalState={this.state} 
-          selectedAgent={this.state.selectedAgent}
-          popupData={this.state.popupData} 
-          closePopup={this.closePopup.bind(this)}
-        />
-      </>
-    )
-  }
+  const openPopup = (data) => {
+    setGlobalState(prevState => ({ ...prevState, popupData: data }));
+  };
+
+  const closePopup = () => {
+    setGlobalState(prevState => ({ ...prevState, popupData: null }));
+  };
+
+  return (
+    <>
+      <Filter globalState={globalState} setGlobalState={setGlobalState} />
+      <Results 
+        globalState={globalState} 
+        setGlobalState={setGlobalState}
+        openPopup={openPopup}
+        addFavorite={addFavorite}
+        removeFavorite={removeFavorite}
+      />
+      <Popup 
+        globalState={globalState}
+        popupData={globalState.popupData} 
+        closePopup={closePopup}
+      />
+    </>
+  );
 }
 
-export default App
+export default App;

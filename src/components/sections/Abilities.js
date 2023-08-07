@@ -1,40 +1,38 @@
-import React, { Component } from "react"
-import '../../styles/components/Abilities.css'
-import * as abilitiesImgs from '../../assets/img/abilities'
+import React from "react";
+import '../../styles/components/Abilities.css';
+import * as abilitiesImgs from '../../assets/img/abilities';
 
+const Abilities = ({ globalState, setGlobalState }) => {
 
-class Abilities extends Component{
-
-    renderAbilities(selectedAgent) {
+    const renderAbilities = (selectedAgent) => {
         if (selectedAgent) {
-            return(
+            return (
                 <div>
                     {Object.keys(abilitiesImgs[selectedAgent]).map(abilityName => (
-                        <img src={abilitiesImgs[selectedAgent][abilityName]} key={abilityName} alt={abilityName}
-                            style={{width: '50px', height:'auto'}} 
-                            className={`Ability ${abilityName === this.props.globalState.selectedAbility ? 'Ability-active' : ''}`} 
+                        <img 
+                            src={abilitiesImgs[selectedAgent][abilityName]} 
+                            key={abilityName} 
+                            alt={abilityName}
+                            className={`Ability ${abilityName === globalState.selectedAbility ? 'Ability-active' : ''}`} 
                             onClick={() => {
-                                this.props.setGlobalState({
-                                    selectedAbility: abilityName === this.props.globalState.selectedAbility ? null : abilityName,
-                                })
+                                setGlobalState({
+                                    ...globalState,
+                                    selectedAbility: abilityName === globalState.selectedAbility ? null : abilityName,
+                                });
                             }}
                         />
                     ))}
                 </div>
-            )
+            );
         }
     }
 
-    render() {
-        const { selectedAgent } = this.props.globalState
-        return(
-            <div >
-                {this.renderAbilities(selectedAgent)}
-   
-            </div>
-        )
-    }
-    
+    const { selectedAgent } = globalState;
+    return (
+        <div>
+            {renderAbilities(selectedAgent)}
+        </div>
+    );
 }
 
-export default Abilities
+export default Abilities;

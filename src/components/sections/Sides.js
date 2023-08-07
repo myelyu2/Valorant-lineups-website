@@ -1,48 +1,55 @@
-import React, { Component } from 'react'
-import '../../styles/components/Sides.css'
+import React from 'react';
+import '../../styles/components/Sides.css';
 
-class Sides extends Component {
-
-    renderSide() {
-        const { selectedSide } = this.props.globalState
-
+const Sides = ({ globalState, setGlobalState }) => {
+    const renderSide = () => {
+        const { selectedSide } = globalState;
         return (
             <div>
-                <ul className={`ListEl ${selectedSide === 'all' ? 'ListEl-selected' : ''}`}
-                    onClick={ () => {
-                        this.props.setGlobalState({
-                            selectedSide: 'all' !== selectedSide ? 'all' : 'all',
-                        })
+                <ul 
+                    className={`ListEl ${selectedSide === 'all' ? 'ListEl-selected' : ''}`}
+                    onClick={() => {
+                        setGlobalState({
+                            ...globalState,
+                            selectedSide: 'all',
+                        });
                     }}
-                > All</ul>
+                >
+                    All
+                </ul>
 
-                <ul className={`ListEl ${selectedSide === 'attack' ? 'ListEl-selected' : ''}`}
-                    onClick={ () => {
-                        this.props.setGlobalState({
-                            selectedSide: 'attack' !== selectedSide ? 'attack' : 'all',
-                        })
+                <ul 
+                    className={`ListEl ${selectedSide === 'attack' ? 'ListEl-selected' : ''}`}
+                    onClick={() => {
+                        setGlobalState({
+                            ...globalState,
+                            selectedSide: selectedSide !== 'attack' ? 'attack' : 'all',
+                        });
                     }}
-                > Attack</ul>
+                >
+                    Attack
+                </ul>
 
-                <ul className={`ListEl ${selectedSide === 'defence' ? 'ListEl-selected' : ''}`}
-                    onClick={ () => {
-                        this.props.setGlobalState({
-                            selectedSide: 'defence' !== selectedSide ? 'defence' : 'all',
-                        })
+                <ul 
+                    className={`ListEl ${selectedSide === 'defence' ? 'ListEl-selected' : ''}`}
+                    onClick={() => {
+                        setGlobalState({
+                            ...globalState,
+                            selectedSide: selectedSide !== 'defence' ? 'defence' : 'all',
+                        });
                     }}
-                > Defence</ul>
+                >
+                    Defence
+                </ul>
             </div>
-        )
+        );
     }
 
-    
-    render () {
-        return (
-            <div>
-               {this.renderSide()}
-            </div>
-        )
-    }
+    return (
+        <div>
+            {renderSide()}
+        </div>
+    );
 }
 
-export default Sides
+export default Sides;

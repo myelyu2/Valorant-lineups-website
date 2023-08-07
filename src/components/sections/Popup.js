@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import { cancel } from '../../assets/img'
+import React from "react";
+import { cancel } from '../../assets/img';
 import '../../styles/components/Popup.css';
-// import * as abilitiesImgs from './img/abilities'
+// import * as abilitiesImgs from './img/abilities';
 
-class Popup extends Component {
-    // async post(key, value, videoId) {
+const Popup = ({ popupData, closePopup, globalState }) => {
+    // The async function post is commented out as per the original code.
+
+    // const post = async (key, value, videoId) => {
     //     try {
     //         const myHeaders = new Headers();
     //         myHeaders.append("Content-Type", "application/json");
@@ -13,9 +15,9 @@ class Popup extends Component {
     //             method: "POST",
     //             headers: myHeaders,
     //             body: JSON.stringify({
-    //                 source: this.props.globalState.selectedSource,
-    //                 agent: this.props.globalState.selectedAgent,
-    //                 map: this.props.globalState.selectedMap,
+    //                 source: globalState.selectedSource,
+    //                 agent: globalState.selectedAgent,
+    //                 map: globalState.selectedMap,
     //                 videoUrl: videoId,
     //                 key,
     //                 value,
@@ -29,9 +31,8 @@ class Popup extends Component {
     //         console.error(error);
     //     }
     // }
-    
 
-    renderVideo(videoId, videoTitle) {
+    const renderVideo = (videoId, videoTitle) => {
         return (
             <>
                 <h3 className="videoTitle">{videoTitle}</h3>
@@ -43,49 +44,40 @@ class Popup extends Component {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
                 ></iframe>
-
-                {/* RAZMETKA to add video to db */}
-                {/* <div>
-                    <p style={{ backgroundColor: 'black' }}>Ability:</p>
-                    {Object.keys(abilitiesImgs[this.props.selectedAgent]).map(abilityName => {
-                        return <img onClick={() => {
-                            this.post('ability', abilityName, videoId)
-                        }} style={{ cursor: "pointer", backgroundColor: 'black' }} width="40px" src={abilitiesImgs[this.props.selectedAgent][abilityName]}/>
-                    })}
+                {/* The code below is commented out as per the original code.
+                <div>
+                    <p>Ability:</p>
+                    {Object.keys(abilitiesImgs[globalState.selectedAgent]).map(abilityName => (
+                        <img onClick={() => post('ability', abilityName, videoId)} width="40px" src={abilitiesImgs[globalState.selectedAgent][abilityName]} alt={abilityName} />
+                    ))}
                 </div>
                 <br />
                 <div>
-                    <p style={{ backgroundColor: 'black' }}>Side:</p>
-                    {['attack', 'defence', 'both'].map(side => (<p onClick={() => {
-                        this.post('side', side, videoId)
-                    }} style={{ cursor: "pointer", backgroundColor: 'black' }}>{side}</p>))}
-                </div> */}
+                    <p>Side:</p>
+                    {['attack', 'defence', 'both'].map(side => (
+                        <p onClick={() => post('side', side, videoId)}>{side}</p>
+                    ))}
+                </div>
+                */}
             </>
-            
-        )
-
-        // 'https://iframe.videodelivery.net/{id}'
-       
+        );
     }
 
-    render() {
-        const { popupData, closePopup } = this.props;
-        return (
-          popupData === null ? null : (
+    return (
+        popupData === null ? null : (
             <div onClick={closePopup} id="popupWrapper">
-              <div id="popup">
-                <img
-                  className="popupClose"
-                  src={cancel}
-                  onClick={closePopup}
-                  alt="close"
-                />
-                {this.renderVideo(popupData.videoUrl, popupData.title)}
-              </div>
+                <div id="popup">
+                    <img
+                        className="popupClose"
+                        src={cancel}
+                        onClick={closePopup}
+                        alt="close"
+                    />
+                    {renderVideo(popupData.videoUrl, popupData.title)}
+                </div>
             </div>
-          )
-        );
-      }
+        )
+    );
 }
 
-export default Popup
+export default Popup;

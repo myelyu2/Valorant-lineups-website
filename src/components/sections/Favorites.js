@@ -1,40 +1,45 @@
-import React, { Component } from 'react'
-import '../../styles/components/Favorites.css'
+import React from 'react';
+import '../../styles/components/Favorites.css';
 
-class Favorites extends Component {
-    renderFavorites() {
-        const { selectedFavorite } = this.props.globalState
+const Favorites = ({ globalState, setGlobalState }) => {
+
+    const renderFavorites = () => {
+        const { selectedFavorite } = globalState;
 
         return (
             <div>
-                <ul className={`ListElFav ${selectedFavorite === 'all' ? 'ListElFav-selected' : ''}`}
-                    onClick={ () => {
-                        this.props.setGlobalState({
+                <ul 
+                    className={`ListElFav ${selectedFavorite === 'all' ? 'ListElFav-selected' : ''}`}
+                    onClick={() => {
+                        setGlobalState({
+                            ...globalState,
                             selectedFavorite: 'all',
-                        })
+                        });
                     }}
-                > Show All</ul>
+                >
+                    Show All
+                </ul>
 
-                <ul className={`ListElFav ${selectedFavorite === 'favorite' ? 'ListElFav-selected' : ''}`}
-                    onClick={ () => {
-                        this.props.setGlobalState({
-                            selectedFavorite: 'favorite' !== selectedFavorite ? 'favorite' : 'all',
-                        })
+                <ul 
+                    className={`ListElFav ${selectedFavorite === 'favorite' ? 'ListElFav-selected' : ''}`}
+                    onClick={() => {
+                        setGlobalState({
+                            ...globalState,
+                            selectedFavorite: selectedFavorite !== 'favorite' ? 'favorite' : 'all',
+                        });
                     }}
-                > Favorites only</ul>
-
+                >
+                    Favorites only
+                </ul>
             </div>
-        )
+        );
     }
 
-    
-    render () {
-        return (
-            <div>
-               {this.renderFavorites()}
-            </div>
-        )
-    }
+    return (
+        <div>
+            {renderFavorites()}
+        </div>
+    );
 }
 
-export default Favorites
+export default Favorites;
