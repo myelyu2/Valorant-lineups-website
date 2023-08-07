@@ -1,65 +1,53 @@
-# Valorant Lineups Website using React.js 🎮
-<img width="1434" alt="Screen Shot 2022-12-14 at 5 43 34 PM" src="https://user-images.githubusercontent.com/89800281/207739099-e4655560-b7a7-44fc-baf9-1c6707986025.png">
+# Valorant Lineups Website 🎮
+![Valorant Lineups Screenshot](https://user-images.githubusercontent.com/89800281/207739099-e4655560-b7a7-44fc-baf9-1c6707986025.png)
 
-<b>The link: </b> https://myelyu2.github.io/Valorant-lineups-website/ 
+This website provides players with Valorant lineups, offering various filters such as agents, maps, abilities, and sides. Users can save their favorite lineups, which will be stored locally. Please note that this website is optimized for desktop usage.
 
-This repository contains the code for a website for Valorant lineups with various filters on agents, maps, abilities and sides.
-You can save your favorite lineups, the website uses local storage (you will not see your favorites on a different device).
-The website is not resposnsive, use only on desktop and is built using HTML, CSS, JavaScript, and the React.js framework.
-<br/>
+**[View the Live Website](https://myelyu2.github.io/Valorant-lineups-website/)**
 
-## Features
-<li>You can save your favorite lineups, the website uses local storage (you will not see your favorites on a different device).</li>
-<li>Website is not resposnsive, use only on desktop.</li>
-<li>Users can find a relevant lineup using filter by side, agent, map and ability from a list of available options.</li>
-<li>Lineups can be saved and viewed only favorites.</li>
-<br/>
+## Features 🌟
+- **Save Favorites:** Store your preferred lineups locally. Note: Your favorites will be device-specific due to the use of local storage.
+- **Extensive Filters:** Find the most relevant lineup using filters for side, agent, map, and ability.
+- **Favorites Mode:** Focus on your saved lineups by viewing only your favorites.
+- **Desktop Optimized:** The website is tailored for desktop users.
 
-## Getting Started
-To run the website locally:
+## Getting Started 🚀
+Want to run the website locally? Here's how:
 
-1. Clone or download the repository
-```
-git clone https://github.com/myelyu2/Valorant-lineups-website.git
-```
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/myelyu2/Valorant-lineups-website.git
+    ```
 
-2. Navigate to the root directory of the repository
-```
-cd Valorant-lineups-website
-```
+2. **Navigate to Directory**
+    ```bash
+    cd Valorant-lineups-website
+    ```
 
-3. Install all required dependencies
-```
-npm i
-```
+3. **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-4. Run a local development server
-```
-npm start
-```
+4. **Start the Local Server**
+    ```bash
+    npm start
+    ```
 
-5. Open the website in your browser at the URL [http://localhost:3000](http://localhost:3000)
+5. **Access the Website:** Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
-<br/>
+## Tech Stack 🛠
+- **[React.js](https://reactjs.org/):** A JavaScript library for building user interfaces.
+- **HTML/CSS:** Structuring and styling the website.
+- **JavaScript:** Adding interactivity and dynamic content.
+- **npm:** Handling project dependencies.
 
-## Built With
-<li>React.js - JavaScript framework for building user interfaces</li>
-<li>HTML/CSS</li>
-<li>JavaScript</li>
-<li>npm</li>
-<br/>
+## Contributing 🤝
+Interested in contributing? Great! Start by forking the repository and then submit a pull request. We appreciate any kind of contribution!
 
+## License ⚖️
+This project is licensed under the MIT License - for more details, refer to the [LICENSE.md](LICENSE.md) file.
 
-## Contributing
-If you are interested in contributing to this project, please fork the repository and submit a pull request.
-<br/>
-<br/>
-
-## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-<br/>
-<br/>
-
-## Acknowledgements
-<li><a href="https://reactjs.org/" target="_blank">React.js</a> - JavaScript framework for building user interfaces</li>
-<li><a href="https://playvalorant.com/en-us/?gclid=Cj0KCQiAtvSdBhD0ARIsAPf8oNnVcr1rt9K33aZZDbirenEeniyE86cydj4TqbsaIyPH7o8Ss3pfQsEaAqjREALw_wcB&gclsrc=aw.ds" target="_blank">Valorant</a> - The game this website is about</li>
+## Acknowledgements 👏
+- [React.js](https://reactjs.org/) for empowering us to build dynamic user interfaces.
+- [Valorant](https://playvalorant.com/en-us/?gclid=Cj0KCQiAtvSdBhD0ARIsAPf8oNnVcr1rt9K33aZZDbirenEeniyE86cydj4TqbsaIyPH7o8Ss3pfQsEaAqjREALw_wcB&gclsrc=aw.ds) for being the inspiration behind this website.
